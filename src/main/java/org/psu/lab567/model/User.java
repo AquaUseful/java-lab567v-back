@@ -9,23 +9,22 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class User {
     @Id
     @GeneratedValue
-    private final Long id;
+    private Long id;
 
     @Enumerated(EnumType.ORDINAL)
     private Role role;
@@ -35,6 +34,9 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @OneToOne(optional = true)
     @JoinColumn(name = "avatar")

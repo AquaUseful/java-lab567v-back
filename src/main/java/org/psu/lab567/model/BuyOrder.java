@@ -10,16 +10,18 @@ import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class BuyOrder {
     @Id
     @GeneratedValue
-    private final Long id;
+    private Long id;
 
     @Column(nullable = false)
     private String mainInfo;
