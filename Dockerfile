@@ -7,7 +7,7 @@ COPY src ./src
 
 RUN ["gradle", "clean", "bootJar", "--no-daemon", "--parallel"]
 
-FROM eclipse-temurin:17 as prod
+FROM eclipse-temurin:17-jre-alpine as prod
 
 WORKDIR /app
 
