@@ -19,10 +19,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BuyOrder {
-    public BuyOrder(@NonNull String product, @NonNull String address, String comment) {
+    public BuyOrder(@NonNull String product, @NonNull String address, String comment, @NonNull User autor) {
         this.product = product;
         this.address = address;
         this.comment = comment;
+        this.author = autor;
     }
 
     @Id
