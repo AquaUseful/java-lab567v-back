@@ -3,16 +3,17 @@ package org.psu.lab567.service;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import org.psu.lab567.auth.JwtAuth;
 import org.psu.lab567.exception.UserExistsException;
 import org.psu.lab567.exception.UserNotFoundException;
 import org.psu.lab567.exception.WrongPasswordException;
-import org.psu.lab567.model.Role;
 import org.psu.lab567.model.User;
 import org.psu.lab567.pojo.LoginRequest;
 import org.psu.lab567.pojo.LoginResponse;
 import org.psu.lab567.pojo.RegisterRequest;
 import org.psu.lab567.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
@@ -44,12 +45,20 @@ public class AuthService {
             throw new UserExistsException();
         }
         final User newUser = new User(
-                null,
-                Role.USER,
                 request.getName(),
                 request.getEmail(),
-                request.getPassword(),
-                null);
+                request.getPassword());
         userService.save(newUser);
+    }
+
+    public User getSelf() {
+        final JwtAuth auth = this.getAuth();
+        // Get fresh user from database to avoid no session errors
+        final User self = userService.getById(auth.getUser().getId());
+        return self;
+    }
+
+    public JwtAuth getAuth() {
+        return (JwtAuth) SecurityContextHolder.getContext().getAuthentication();
     }
 }
