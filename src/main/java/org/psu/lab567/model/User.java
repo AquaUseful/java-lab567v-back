@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 @Entity
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
-    public User(String name, String email, String password) {
+    public User(@NonNull String name, @NonNull String email, @NonNull String password) {
         this.name = name;
         this.email = email;
         this.password = password;
