@@ -1,4 +1,4 @@
-FROM gradle:jdk17-alpine AS build
+FROM gradle:jdk19-alpine AS build
 
 WORKDIR /build
 
@@ -7,7 +7,7 @@ COPY src ./src
 
 RUN ["gradle", "clean", "bootJar", "--no-daemon", "--parallel"]
 
-FROM eclipse-temurin:17-jre-alpine as prod
+FROM eclipse-temurin:19-jre-alpine as prod
 
 WORKDIR /app
 
