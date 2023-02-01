@@ -14,14 +14,12 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class User {
@@ -31,6 +29,7 @@ public class User {
         this.password = password;
         this.loginCount = 0;
         this.orders = null;
+        this.role = Role.USER;
     }
 
     @Id
