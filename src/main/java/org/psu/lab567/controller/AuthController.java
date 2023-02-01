@@ -2,6 +2,7 @@ package org.psu.lab567.controller;
 
 import javax.validation.Valid;
 
+import org.psu.lab567.auth.JwtAuth;
 import org.psu.lab567.exception.UserExistsException;
 import org.psu.lab567.exception.UserNotFoundException;
 import org.psu.lab567.exception.WrongPasswordException;
@@ -12,6 +13,7 @@ import org.psu.lab567.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,4 +41,8 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
+    @GetMapping(path = "validate")
+    public ResponseEntity<Void> validate() {
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
 }
