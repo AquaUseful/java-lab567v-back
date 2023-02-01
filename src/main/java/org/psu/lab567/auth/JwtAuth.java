@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.hibernate.cfg.NotYetImplementedException;
+import org.psu.lab567.model.Role;
 import org.psu.lab567.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -54,5 +55,4 @@ public class JwtAuth implements Authentication {
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
         this.isAuthenticated = isAuthenticated;
     }
-
 }
