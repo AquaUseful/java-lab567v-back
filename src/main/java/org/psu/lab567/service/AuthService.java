@@ -31,6 +31,7 @@ public class AuthService {
             final User user = userService.getByEmail(request.getEmail());
             if (user.getPassword().equals(request.getPassword())) {
                 final String token = jwtUtils.generate(user);
+                userService.incrementLoginCount(user);
                 return new LoginResponse("Bearer", token);
             } else {
                 throw new WrongPasswordException();

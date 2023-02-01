@@ -4,11 +4,11 @@ import java.util.Collection;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.psu.lab567.model.BinFile;
 import org.psu.lab567.model.User;
 import org.psu.lab567.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.NonNull;
 
@@ -40,6 +40,16 @@ public class UserService {
     public Collection<User> getAll() {
         final Collection<User> users = userRepository.findAll();
         return users;
+    }
+
+    public void setAvatar(@NonNull User user, @NonNull BinFile avatar) {
+        user.setAvatar(avatar);
+        userRepository.save(user);
+    }
+
+    public void incrementLoginCount(@NonNull User user) {
+        user.setLoginCount(user.getLoginCount() + 1);
+        userRepository.save(user);
     }
 
 }
