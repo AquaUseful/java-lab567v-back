@@ -13,10 +13,15 @@ import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class BinFile {
+    public BinFile(String mimeType, long size, byte[] content) {
+        this.mimeType = mimeType;
+        this.size = size;
+        this.content = content;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
@@ -25,7 +30,7 @@ public class BinFile {
     private String mimeType;
 
     @Column(nullable = false)
-    private int size;
+    private long size;
 
     @Lob
     @Column(nullable = false)
