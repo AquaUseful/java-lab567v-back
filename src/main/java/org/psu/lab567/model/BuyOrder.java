@@ -11,27 +11,32 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class BuyOrder {
+    public BuyOrder(@NonNull String product, @NonNull String address, String comment) {
+        this.product = product;
+        this.address = address;
+        this.comment = comment;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    private String mainInfo;
+    private String product;
+
+    @Column(nullable = false)
+    private String address;
 
     @Column(nullable = true)
-    private String additionalInfo;
-
-    @OneToOne
-    @JoinColumn
-    private BinFile attachment;
+    private String comment;
 
     @ManyToOne(optional = false)
     @JoinColumn
