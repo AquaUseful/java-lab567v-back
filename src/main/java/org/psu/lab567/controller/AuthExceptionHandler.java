@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class AuthExceptionHandler {
-
     @ExceptionHandler(AuthException.class)
     public ResponseEntity<ExceptionResponse> authExceptionHandler(AuthException exception) {
         final ExceptionResponse response = new ExceptionResponse(exception);
