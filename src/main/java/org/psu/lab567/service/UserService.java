@@ -1,11 +1,15 @@
 package org.psu.lab567.service;
 
+import java.io.IOException;
 import java.util.Collection;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.constraints.NotNull;
 
 import org.psu.lab567.model.BinFile;
 import org.psu.lab567.model.User;
+import org.psu.lab567.pojo.NewUserRequest;
+import org.psu.lab567.repository.BinFileRepository;
 import org.psu.lab567.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BinFileService binFileService;
 
     public User getById(@NonNull Long id) {
         final User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
@@ -52,4 +58,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void add(@NotNull NewUserRequest request) {
+        final User newUser = new User(request.getName(),
+                request.getEmail(),
+                request.getPassword(),
+                request.getRole());
+        userRepository.save(newUser);
+    }
+
+    public void deleteById(@NotNull Long id) {
+        userRepository.deleteById(id);
+    }
 }

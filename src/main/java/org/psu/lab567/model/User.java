@@ -33,6 +33,16 @@ public class User {
         this.role = Role.USER;
     }
 
+    public User(@NonNull String name,
+            @NonNull String email,
+            @NonNull String password,
+            @NonNull Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
