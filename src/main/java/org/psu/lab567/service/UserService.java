@@ -66,4 +66,12 @@ public class UserService {
     public void deleteById(@NonNull Long id) {
         userRepository.deleteById(id);
     }
+
+    public void patchById(@NonNull Long id, @NonNull NewUserRequest patch) {
+        User user = getById(id);
+        user.setName(patch.getName());
+        user.setEmail(patch.getEmail());
+        user.setRole(patch.getRole());
+        userRepository.save(user);
+    }
 }
