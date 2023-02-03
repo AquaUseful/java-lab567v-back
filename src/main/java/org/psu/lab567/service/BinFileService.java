@@ -29,4 +29,8 @@ public class BinFileService {
         binFileRepository.save(binFile);
         return binFile;
     }
+
+    public void delete(@NonNull BinFile file) {
+        binFileRepository.deleteById(file.getId());
+    }
 }
