@@ -11,9 +11,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PatchNewsRequest {
     @NotEmpty(message = "Пустое имя новости")
-    private String title;
+    private final String title;
     @NotEmpty(message = "Пустое содержание")
-    private String content;
-    private MultipartFile picture;
-    private String removePicture;
+    private final String content;
+    private final MultipartFile picture;
+    private final String removePicture;
 }
