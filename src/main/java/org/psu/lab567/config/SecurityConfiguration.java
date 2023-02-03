@@ -28,6 +28,7 @@ public class SecurityConfiguration {
                         auth -> auth
                                 .antMatchers("/auth/login").permitAll()
                                 .antMatchers("/auth/register").permitAll()
+                                .antMatchers("/news/all").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class))
