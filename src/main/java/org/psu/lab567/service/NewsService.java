@@ -43,8 +43,9 @@ public class NewsService {
     public void patchById(@NonNull Long id, @NonNull PatchNewsRequest patch) throws IOException {
         News news = getById(id);
         if (patch.getRemovePicture() != null) {
-            newsRepository.deleteById(news.getPicture().getId());
+            final BinFile currPicture = news.getPicture();
             news.setPicture(null);
+            binFileService.delete(currPicture);
         } else if ((patch.getPicture() != null) && (patch.getPicture().getSize() > 0)) {
             if (news.getPicture() == null) {
                 final BinFile newPicture = binFileService.createFromMultipart(patch.getPicture());
